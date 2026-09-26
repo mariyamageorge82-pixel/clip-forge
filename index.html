@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClipForge — Video Downloader</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <span class="logo-mark">C</span>
+            ClipForge
+        </div>
+
+        <nav>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#support">Support</a>
+        </nav>
+
+        <button class="nav-button" onclick="scrollToPricing()">
+            Get Pro
+        </button>
+    </header>
+
+
+    <main>
+
+        <!-- HERO -->
+        <section class="hero">
+
+            <div class="badge">
+                <span></span>
+                Fast & Simple Video Processing
+            </div>
+
+            <h1>
+                Download videos.<br>
+                <span>Forge them your way.</span>
+            </h1>
+
+            <p class="hero-text">
+                Paste a direct video URL, choose your quality,
+                and get your video ready in seconds.
+            </p>
+
+
+            <!-- URL BOX -->
+            <div class="url-container">
+
+                <div class="url-input-wrapper">
+                    <svg width="20" height="20" viewBox="0 0 24 24">
+                        <path
+                            d="M10 13a5 5 0 0 0 7.07.07l2-2a5 5 0 0 0-7.07-7.07l-1.14 1.14"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                        />
+                        <path
+                            d="M14 11a5 5 0 0 0-7.07-.07l-2 2A5 5 0 0 0 7 20l1.14-1.14"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                        />
+                    </svg>
+
+                    <input
+                        type="url"
+                        id="videoUrl"
+                        placeholder="Paste your video URL here..."
+                    >
+                </div>
+
+                <button class="analyze-button" onclick="analyzeVideo()">
+                    Analyze
+                    <span>→</span>
+                </button>
+
+            </div>
+
+            <p class="supported">
+                Supports direct video URLs • MP4 • WebM • MOV
+            </p>
+
+
+            <!-- RESULT -->
+            <div class="result-card" id="resultCard">
+
+                <div class="video-info">
+
+                    <div class="thumbnail">
+                        <span>▶</span>
+                    </div>
+
+                    <div>
+                        <div class="video-label">VIDEO READY</div>
+                        <h3 id="videoTitle">Your video</h3>
+                        <p id="videoUrlText"></p>
+                    </div>
+
+                </div>
+
+
+                <div class="quality-section">
+
+                    <div class="section-title">
+                        <span>Quality</span>
+                        <small>Choose output resolution</small>
+                    </div>
+
+                    <div class="quality-options">
+
+                        <button
+                            class="quality active"
+                            data-quality="720p"
+                            onclick="selectQuality(this)"
+                        >
+                            <strong>720p</strong>
+                            <small>Free</small>
+                        </button>
+
+                        <button
+                            class="quality"
+                            data-quality="1080p"
+                            onclick="selectQuality(this)"
+                        >
+                            <strong>1080p</strong>
+                            <small>Free</small>
+                        </button>
+
+                        <button
+                            class="quality locked"
+                            data-quality="1440p"
+                            onclick="showProMessage()"
+                        >
+                            <strong>1440p</strong>
+                            <small>PRO 🔒</small>
+                        </button>
+
+                        <button
+                            class="quality locked"
+                            data-quality="4K"
+                            onclick="showProMessage()"
+                        >
+                            <strong>4K</strong>
+                            <small>PRO 🔒</small>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <button class="download-button" onclick="downloadVideo()">
+                    <span>↓</span>
+                    Download <b id="selectedQuality">720p</b>
+                </button>
+
+                <p class="permission-note">
+                    Only download videos you own or have permission to download.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEATURES -->
+        <section class="features" id="features">
+
+            <div class="section-heading">
+                <span>WHY CLIPFORGE</span>
+                <h2>Built to stay simple.</h2>
+            </div>
+
+
+            <div class="feature-grid">
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Processing</h3>
+                    <p>
+                        Designed for quick video processing
+                        without unnecessary steps.
+                    </p>
+                </div>
+
+
+                <div class="feature-card">
+                    <div class="feature-icon">◈</div>
+                    <h3>Multiple Qualities</h3>
+                    <p>
+                        Choose the resolution that works
+                        best for your project.
+                    </p>
+                </div>
+
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Privacy First</h3>
+                    <p>
+                        Your video URLs are processed only
+                        when you request them.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PRICING -->
+        <section class="pricing" id="pricing">
+
+            <div class="section-heading center">
+                <span>PRICING</span>
+                <h2>Unlock more quality.</h2>
+                <p>
+                    Start free. Upgrade when you need higher resolutions.
+                </p>
+            </div>
+
+
+            <div class="pricing-grid">
+
+                <div class="price-card">
+
+                    <div class="plan-name">FREE</div>
+
+                    <div class="price">
+                        ₹0
+                        <small>/ forever</small>
+                    </div>
+
+                    <ul>
+                        <li>✓ 720p downloads</li>
+                        <li>✓ 1080p downloads</li>
+                        <li>✓ Basic processing</li>
+                        <li>✓ No account required</li>
+                    </ul>
+
+                    <button class="secondary-button">
+                        Current Plan
+                    </button>
+
+                </div>
+
+
+                <div class="price-card pro">
+
+                    <div class="pro-badge">POPULAR</div>
+
+                    <div class="plan-name">PRO</div>
+
+                    <div class="price">
+                        ₹199
+                        <small>/ month</small>
+                    </div>
+
+                    <ul>
+                        <li>✓ Everything in Free</li>
+                        <li>✓ 1440p downloads</li>
+                        <li>✓ 4K downloads</li>
+                        <li>✓ Priority processing</li>
+                    </ul>
+
+                    <button class="primary-button" onclick="showComingSoon()">
+                        Get Pro →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SUPPORT -->
+        <section class="support" id="support">
+
+            <div class="support-box">
+
+                <div>
+                    <span class="support-label">LIKE CLIPFORGE?</span>
+                    <h2>Help keep it running.</h2>
+                    <p>
+                        If you find ClipForge useful,
+                        you can support the project.
+                    </p>
+                </div>
+
+                <button class="donate-button" onclick="donate()">
+                    ♥ Support ClipForge
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <div class="logo">
+            <span class="logo-mark">C</span>
+            ClipForge
+        </div>
+
+        <p>© 2026 ClipForge. Built for creators.</p>
+    </footer>
+
+
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
